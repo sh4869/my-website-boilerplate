@@ -5,7 +5,6 @@ const pug = require("gulp-pug");
 const data = require("gulp-data");
 const sass = require("gulp-sass");
 const connect = require('gulp-connect');
-const runSequence = require("run-sequence");
 const moduleImporter = require("sass-module-importer");
 
 gulp.task('pug', () => {
