@@ -18,11 +18,11 @@ gulp.task('pug', () => {
             (file) => {
                 const dirname = __dirname + "/www/data/";
                 const files = fs.readdirSync(dirname);
-                let datas = {};
+                let json = {};
                 files.forEach((name) => {
-                    datas[name.replace(".json", "")] = JSON.parse(fs.readFileSync(dirname + name));
+                    json[name.replace(".json", "")] = JSON.parse(fs.readFileSync(dirname + name));
                 });
-                return { data: datas };
+                return { data: json };
             })
         )
         .pipe(pug({ pretty: true }))
@@ -47,11 +47,6 @@ gulp.task("css", () => {
         .pipe(connect.reload());
 });
 
-gulp.task("font", () => {
-    return gulp.src("node_modules/font-awesome/fonts/*")
-        .pipe(gulp.dest("dest/fonts/"));
-});
-
 gulp.task("favicon", () => {
     return gulp.src("www/favicon/*")
         .pipe(gulp.dest("dest/favicon/"));
@@ -62,7 +57,7 @@ gulp.task("cname", () => {
         .pipe(gulp.dest("dest/"));
 })
 
-gulp.task("build", ["img", "pug", "css", "font", "cname", "favicon"], () => {
+gulp.task("build", ["img", "pug", "css", "cname", "favicon"], () => {
 
 });
 
